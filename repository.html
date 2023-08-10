@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+    <title>LMS | Repository Installation</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav class="nav">
+        <div class="nav-logo">
+          <h2 class="nav-title">LMS</h2>
+        </div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="koha.html" class="nav-link">KOHA Installation</a>
+          </li>
+          <li class="nav-item">
+            <a href="repository.html" class="nav-link">Repository</a>
+          </li>
+          <li class="nav-item">
+            <a href="news.html" class="nav-link">News</a>
+          </li>
+        </ul>
+      </nav>
+
+      <header class="header">
+        <h2 class="header-title">Library Management System</h2>
+      </header>
+      <section class="repository">
+        <div class="dspace-frontend">
+          <h2 class="respository-title">Install Dsapce Frontend</h2>
+          <p class="repository-text">
+            To install dspace frontend on ubuntu, use the following commands
+          </p>
+          <pre><code>$ sudo apt update && sudo apt upgrade -y  # Update system packages to</code></pre>
+        </div>
+        <div class="dspace-backend">
+          <h2 class="respository-title">Install Dsapce Backend</h2>
+          <p class="repository-text">
+            To install dspace backend on ubuntu, use the following commands
+          </p>
+          <div class="dspace-commands">
+            <p class="dspace-txt">Update and upgrade Ubuntu</p>
+            <code class="dspace-code">sudo apt-get update</code>
+            <code class="dspace-code">sudo apt-get upgrade -y</code>
+            <p class="dspace-txt">Install Git</p>
+            <code class="dspace-code"
+              >sudo add-apt-repository ppa:git-core/ppa</code
+            >
+            <code class="dspace-code">sudo apt-get update</code>
+            <code class="dspace-code">sudo apt-get install git</code>
+            <p class="dspace-txt">
+              Install OpenJDK 11, Apache Ant, Maven and Postgresql
+            </p>
+            <code class="dspace-code"
+              >sudo apt-get install openjdk-11-jdk ant maven</code
+            >
+            <p class="dspace-txt">Import the repository signing key</p>
+            <code class="dspace-code"
+              >wget --quiet -O -
+              https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key
+              add -</code
+            >
+            <p class="dspace-txt">
+              Create the file repository configuration for postgres-15(latest
+              version)
+            </p>
+            <code class="dspace-code"
+              >echo "deb http://apt.postgresql.org/pub/repos/apt jammy-pgdg
+              main" | sudo tee /etc/apt/sources.list.d/pgdg.list</code
+            >
+            <p class="dspace-txt">Update Ubuntu</p>
+            <code class="dspace-code">sudo apt-get update</code>
+            <p class="dspace-txt">Install Postgresql</p>
+            <code class="dspace-code"
+              >sudo apt-get install postgresql postgresql-client
+              postgresql-contrib libpostgresql-jdbc-java -y</code
+            >
+            <p class="dspace-txt">Check the installed version</p>
+            <code class="dspace-code">psql -V psql</code>
+            <p class="dspace-txt">
+              Configure Dspace database, pgcrypto extension in PostgreSQL
+            </p>
+            <code class="dspace-code">sudo su postgres</code>
+            <p class="dspace-txt">Navigate to the postgresql directory</p>
+            <code class="dspace-code">cd /etc/postgresql/15/main</code>
+            <p class="dspace-txt">Create a user</p>
+            <code class="dspace-code"
+              >createuser --username=postgres --no-superuser --pwprompt
+              dspace</code
+            >
+            <p class="dspace-txt">Create a database</p>
+            <code class="dspace-code"
+              >createdb --username=postgres --owner=dspace --encoding=UNICODE -T
+              template0 dspace</code
+            >
+            <p class="dspace-txt">Create the extension</p>
+            <code class="dspace-code"
+              >psql --username=postgres dspace -c "CREATE EXTENSION pgcrypto;"
+            </code>
+            <p class="dspace-txt">Exit from postgres</p>
+            <code class="dspace-code">exit</code>
+            <p class="dspace-txt">
+              Allow Dsapce on localhost. Edit the configuration file
+            </p>
+            <code class="dspace-code">
+              sudo gedit /etc/postgresql/15/main/pg_hba.conf
+            </code>
+            <p>Add <code>local all dspace md5</code></p>
+            <p class="dspace-txt">Restart postgresql</p>
+            <code class="dspace-code">sudo /etc/init.d/postgresql restart</code>
+            <p class="dspace-txt">Configure Dspace user and password</p>
+            <code class="dspace-code">sudo useradd -m dspace</code>
+            <code class="dspace-code">sudo passwd dspace</code>
+            <p class="dspace-txt">
+              Create Dspace directory and change ownership
+            </p>
+            <code class="dspace-code">sudo mkdir /build</code>
+            <code class="dspace-code">sudo chmod -R 777 /build</code>
+            <p class="dspace-txt">
+              Create solr directory in opt and change the director ownership to
+              DSpace user (Install the lates version on LTS)
+            </p>
+            <code class="dspace-code">sudo mkdir /opt/solr-8.11</code>
+            <p class="dspace-txt">Move to the directory</p>
+            <code class="dspace-code">cd /opt/solr-8.11</code>
+            <p class="dspace-txt">Grant permision</p>
+            <code class="dspace-code"
+              >sudo chown -R dspace:dspace /opt/solr-8.11</code
+            >
+            <p class="dspace-txt">Install the package</p>
+            <code class="dspace-code"
+              >wget -c
+              https://dlcdn.apache.org/lucene/solr/8.11.2/solr-8.11.2.tgz</code
+            >
+            <p class="dspace-txt">Extract the package</p>
+            <code class="dspace-code">tar xvf solr-8.11.2.tgz</code>
+            <p class="dspace-txt">Copy the folder</p>
+            <code class="dspace-code"
+              >cp -rf /opt/solr-8.11/solr-8.11.2/* /opt/solr-8.11/</code
+            >
+            <p class="dspace-txt">Remove the zip file</p>
+            <code class="dspace-code">rm -rf solr-8.11.2 solr-8.11.2.tgz</code>
+            <p class="dspace-txt">Start the solr</p>
+            <code class="dspace-code"
+              >/opt/solr-8.11/bin/solr start -force</code
+            >
+            <p class="dspace-txt">Check the status of solr</p>
+            <code class="dspace-code">/opt/solr-8.11/bin/solr status</code>
+            <code class="dspace-code">http:localhost:8983</code>
+            <code class="dspace-code">exit</code>
+            <p class="dspace-txt">
+              Download and extract DSpace sources in the build directory
+            </p>
+            <code class="dspace-code">cd /build</code>
+            <p class="dspace-txt">Download DSpace source</p>
+            <code class="dspace-code"
+              >wget -c
+              https://github.com/DSpace/DSpace/archive/refs/tags/dspace-7.4.tar.gz</code
+            >
+            <p class="dspace-txt">Extract the files</p>
+            <code class="dspace-code">tar -zxvf dspace-7.4.tar.gz</code>
+            <p class="dspace-txt">
+              Remove Maven disturbing build number plugin in pom.xml file
+            </p>
+            <code class="dspace-code"
+              >sudo gedit /build/DSpace-dspace-7.4/dspace-api/pom.xml</code
+            >
+            <code>Remove version number 1.4</code>
+            <p class="dspace-txt">Build DSpace in build directory</p>
+            <code class="dspace-code">cd /build/DSpace-dspace-7.4</code>
+            <p class="dspace-txt">Install mvn packages</p>
+            <code class="dspace-code">sudo mvn -U package</code>
+            <code class="dspace-code">sudo mkdir /build</code>
+            <code class="dspace-code">sudo mkdir /build</code>
+            <code class="dspace-code">sudo mkdir /build</code>
+            <code class="dspace-code">sudo mkdir /build</code>
+            <code class="dspace-code">sudo mkdir /build</code>
+            <code class="dspace-code">sudo mkdir /build</code>
+            <code class="dspace-code">sudo mkdir /build</code>
+            <code class="dspace-code">sudo mkdir /build</code>
+            <code class="dspace-code">sudo mkdir /build</code>
+            <code class="dspace-code">sudo mkdir /build</code>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="container">
+      <div class="footer">
+        <div class="footer-copyright">
+          <p class="footer-text">
+            Copyright &copy; <span class="copy-year"></span>. All rights
+            reserved
+          </p>
+          <p class="footer-text">
+            Designed and developed by
+            <a href="mailto:joel.n.wanjala@gmail.com" class="footer-link"
+              >Joel Nambala</a
+            >
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+  <script>
+    document.querySelector('.copy-year').textContent = new Date().getFullYear();
+  </script>
+</html>

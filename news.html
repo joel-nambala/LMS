@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+    <title>LMS | News</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav class="nav">
+        <div class="nav-logo">
+          <h2 class="nav-title">LMS</h2>
+        </div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="koha.html" class="nav-link">KOHA Installation</a>
+          </li>
+          <li class="nav-item">
+            <a href="repository.html" class="nav-link">Repository</a>
+          </li>
+          <li class="nav-item">
+            <a href="news.html" class="nav-link">News</a>
+          </li>
+        </ul>
+      </nav>
+
+      <header class="header">
+        <h2 class="header-title">Library Management System</h2>
+      </header>
+    </div>
+
+    <footer class="container">
+      <div class="footer">
+        <div class="footer-copyright">
+          <p class="footer-text">
+            Copyright &copy; <span class="copy-year"></span>. All rights
+            reserved
+          </p>
+          <p class="footer-text">
+            Designed and developed by
+            <a href="mailto:joel.n.wanjala@gmail.com" class="footer-link"
+              >Joel Nambala</a
+            >
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+  <script>
+    document.querySelector('.copy-year').textContent = new Date().getFullYear();
+  </script>
+</html>

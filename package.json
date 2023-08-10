@@ -1,0 +1,11 @@
+{
+  "name": "koha-commands",
+  "version": "1.0.0",
+  "description": "Library Management Software commands in one repository",
+  "main": "script.js",
+  "scripts": {
+    "server": "live-server"
+  },
+  "author": "Joel Nambala",
+  "license": "ISC"
+}
