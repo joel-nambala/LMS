@@ -1,11 +1,15 @@
 {
-  "name": "koha-commands",
+  "name": "lms",
   "version": "1.0.0",
-  "description": "Library Management Software commands in one repository",
+  "description": "Library management system documentaion",
   "main": "script.js",
   "scripts": {
-    "server": "live-server"
+    "server": "live-server --port=8090",
+    "start": "server"
   },
   "author": "Joel Nambala",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "live-server": "^1.1.0"
+  }
 }

@@ -42,7 +42,38 @@
           <p class="repository-text">
             To install dspace frontend on ubuntu, use the following commands
           </p>
-          <pre><code>$ sudo apt update && sudo apt upgrade -y  # Update system packages to</code></pre>
+          <p class="dspace-txt">Update and upgrade Ubuntu</p>
+          <code class="dspace-code"
+            >sudo apt update && sudo apt upgrade -y</code
+          >
+          <p class="dspace-txt">
+            Install Node js through NVM (Node Version Manager)
+          </p>
+          <p class="dspace-txt">Check the NVM current stable version</p>
+          <p class="dspace-txt">Install curl</p>
+          <code class="dspace-code">sudo apt-get install curl</code>
+          <p class="dspace-txt">Install Node Version Manager</p>
+          <code class="dspace-code"
+            >curl -o-
+            https://raw.githubusercontent.com/creationix/nvm/v0.39.4/install.sh
+            | bash</code
+          >
+          <code class="dspace-code">source ~/.bashrc</code>
+          <code class="dspace-code">nvm list-remote</code>
+          <p class="dspace-txt">Yarn installation</p>
+          <p class="dspace-txt">Add the debian repository for yarn</p>
+          <code class="dspace-code"
+            >echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee
+            /etc/apt/sources.list.d/yarn.list</code
+          >
+          <p class="dspace-txt">Add the source key</p>
+          <code class="dspace-code"
+            >curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key
+            add -</code
+          >
+          <p class="dspace-txt">Update the system and install yarn</p>
+          <code class="dspace-code">sudo apt-get update</code>
+          <code class="dspace-code">sudo apt-get install yarn</code>
         </div>
         <div class="dspace-backend">
           <h2 class="respository-title">Install Dsapce Backend</h2>
