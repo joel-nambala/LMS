@@ -34,11 +34,13 @@
       </nav>
 
       <header class="header">
-        <h2 class="header-title">Library Management System</h2>
+        <h2 class="header-title">
+          Installation of the Library repository using DSpace
+        </h2>
       </header>
       <section class="repository">
         <div class="dspace-frontend">
-          <h2 class="respository-title">Install Dsapce Frontend</h2>
+          <h2 class="respository-title">Install DSpace Frontend</h2>
           <p class="repository-text">
             To install dspace frontend on ubuntu, use the following commands
           </p>
@@ -74,9 +76,43 @@
           <p class="dspace-txt">Update the system and install yarn</p>
           <code class="dspace-code">sudo apt-get update</code>
           <code class="dspace-code">sudo apt-get install yarn</code>
+          <p class="dspace-txt">Check the current yarn version</p>
+          <code class="dspace-code">yarn --version</code>
+          <p class="dspace-txt">Download the DSpace source files</p>
+          <code class="dspace-code"
+            >wget -c
+            https://github.com/DSpace/dspace-angular/archive/refs/tags/dspace-7.4.tar.gz</code
+          >
+          <p class="dspace-txt">Extract the files</p>
+          <code class="dspace-code">tar -zxvf dspace-7.4.tar.gz</code>
+          <p class="dspace-txt">Rename the directory</p>
+          <code class="dspace-code"
+            >mv dspace-angular-dspace-7.4 dspace-7-angular</code
+          >
+          <p class="dspace-txt">cd to the directory</p>
+          <code class="dspace-code">cd dspace-7-angular</code>
+          <p class="dspace-txt">Install required angular dependencies</p>
+          <code class="dspace-code">yarn install</code>
+          <p class="dspace-txt">Configure DSpace user and password</p>
+          <code class="dspace-code">sudo useradd -m dspace</code>
+          <code class="dspace-code">sudo passwd dspace</code>
+          <p class="dspace-txt">Create DSpace directory and change ownership</p>
+          <code class="dspace-code">sudo mkdir /dspace</code>
+          <code class="dspace-code">sudo chown dspace /dspace</code>
+          <p class="dspace-txt">Move the frontend files to the OPT directory</p>
+          <code class="dspace-code">sudo cp -r dspace-7-angular /opt/</code>
+          <code class="dspace-code"
+            >sudo chown dspace:dspace -R /opt/dspace-7-angular</code
+          >
+          <code class="dspace-code">cd /opt/dspace-7-angular</code>
+          <code class="dspace-code">yarn start</code>
+          <p class="dspace-txt">
+            Open locally installed DSpace at
+            <a href="http://localhost:4000" target="_blank">localhost:4000</a>
+          </p>
         </div>
         <div class="dspace-backend">
-          <h2 class="respository-title">Install Dsapce Backend</h2>
+          <h2 class="respository-title">Install DSpace Backend</h2>
           <p class="repository-text">
             To install dspace backend on ubuntu, use the following commands
           </p>
@@ -212,16 +248,6 @@
             <code class="dspace-code">cd /build/DSpace-dspace-7.4</code>
             <p class="dspace-txt">Install mvn packages</p>
             <code class="dspace-code">sudo mvn -U package</code>
-            <code class="dspace-code">sudo mkdir /build</code>
-            <code class="dspace-code">sudo mkdir /build</code>
-            <code class="dspace-code">sudo mkdir /build</code>
-            <code class="dspace-code">sudo mkdir /build</code>
-            <code class="dspace-code">sudo mkdir /build</code>
-            <code class="dspace-code">sudo mkdir /build</code>
-            <code class="dspace-code">sudo mkdir /build</code>
-            <code class="dspace-code">sudo mkdir /build</code>
-            <code class="dspace-code">sudo mkdir /build</code>
-            <code class="dspace-code">sudo mkdir /build</code>
           </div>
         </div>
       </section>
