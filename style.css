@@ -55,6 +55,7 @@ body {
 .footer {
   background-color: #1c8b38;
   color: #fff;
+  margin-top: 2rem;
 }
 
 .footer-copyright {
@@ -81,13 +82,24 @@ body {
   font-size: 1.6rem;
 }
 
-.dspace-code {
+.dspace-code,
+.koha-code {
   display: block;
   background-color: #ccc;
   width: fit-content;
   margin-bottom: 0.4rem;
   padding: 0.2rem 0.4rem;
   border-radius: 0.1rem;
+}
+
+.koha-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.koha-code {
+  font-size: 1.6rem;
 }
 
 @media only screen and (max-width: 400px) {
