@@ -43,6 +43,69 @@
           >sudo mysqldump --single-transaction -u root -p koha_library >
           koha_library.sql</code
         >
+        <p class="koha-title">Upgrade KOHA to the latest version</p>
+        <code class="koha-code"
+          >sudo apt-get update && sudo apt-get upgrade -y</code
+        >
+        <p class="koha-title">
+          install repository key for the latest stable version
+        </p>
+        <code class="koha-code"
+          >echo deb http://debian.koha-community.org/koha stable main | sudo tee
+          /etc/apt/sources.list.d/koha.list</code
+        >
+        <code class="koha-code">sudo apt-get update</code>
+        <p class="koha-title">Install the latest koha version</p>
+        <code class="koha-code">sudo apt-get install koha-common</code>
+        <p class="koha-title">Clean the packages after upgradation</p>
+        <code class="koha-code">sudo apt-get clean</code>
+        <p class="koha-title">Upgrade Database Schema</p>
+        <code class="koha-code">sudo koha-upgrade-schema library</code>
+        <p class="koha-title">Rebuild the Zebra Index</p>
+        <code class="koha-code">sudo koha-rebuild-zebra -v -f library</code>
+        <p class="koha-title">
+          Now Restore the database backup in the newly installed Koha machine
+        </p>
+        <p class="koha-title">Apply following commands</p>
+        <code class="koha-code">sudo su</code>
+        <code class="koha-code"
+          >sudo apt-get update && sudo apt-get upgrade -y</code
+        >
+        <p class="koha-title">Open the MySQL database</p>
+        <code class="koha-code">sudo mysql -u root -p </code>
+        <p class="koha-title">Check the list of all databases</p>
+        <code class="koha-code">show databases;</code>
+        <p class="koha-title">Drop (remove) the existing database from koha.</p>
+        <code class="koha-code">drop database koha_library;</code>
+        <p class="koha-title">
+          Now create the new database named "koha_library"
+        </p>
+        <code class="koha-code">create database koha_library;</code>
+        <code class="koha-code">quit;</code>
+        <p class="koha-title">
+          Execute the below command to restore the old backup to the new Koha
+          installation.
+        </p>
+        <code class="koha-code"
+          >sudo mysql -uroot -p koha_library < koha_library.sql
+        </code>
+        <p class="koha-title">
+          Apply the following commands to upgrade the database schema
+        </p>
+        <code class="koha-code">sudo service memcached restart</code>
+        <code class="koha-code">sudo koha-upgrade-schema library</code>
+        <p class="koha-title">Rebuild the Zebra Index.</p>
+        <code class="koha-code">sudo koha-rebuild-zebra -v -f library</code>
+        <p class="koha-title">Login as a root user</p>
+        <code class="koha-code">sudo su</code>
+        <p class="koha-title">Login as a root user</p>
+        <code class="koha-code">sudo su</code>
+        <p class="koha-title">Login as a root user</p>
+        <code class="koha-code">sudo su</code>
+        <p class="koha-title">Login as a root user</p>
+        <code class="koha-code">sudo su</code>
+        <p class="koha-title">Login as a root user</p>
+        <code class="koha-code">sudo su</code>
       </header>
     </div>
 
