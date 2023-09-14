@@ -25,6 +25,9 @@
             <a href="koha.html" class="nav-link">KOHA Installation</a>
           </li>
           <li class="nav-item">
+            <a href="koha-backup.html" class="nav-link">Back up and restore</a>
+          </li>
+          <li class="nav-item">
             <a href="repository.html" class="nav-link">Repository</a>
           </li>
           <li class="nav-item">
@@ -39,6 +42,63 @@
         <code class="koha-code">sudo su</code>
         <p class="koha-title">Update and upgrade the system</p>
         <code class="koha-code">sudo apt update && sudo apt upgrade -y</code>
+        <p class="koha-title">Add Koha community repository</p>
+        <code class="koha-code"
+          >echo deb http://debian.koha-community.org/koha stable main | sudo tee
+          /etc/apt/sources.list.d/koha.list</code
+        >
+        <p class="koha-title">Add the source key</p>
+        <code class="koha-code"
+          >wget -O- http://debian.koha-community.org/koha/gpg.asc | sudo apt-key
+          add -</code
+        >
+        <p class="koha-title">Update Software Repository</p>
+        <code class="koha-code">sudo apt-get update</code>
+        <p class="koha-title">Install Koha</p>
+        <code class="koha-code">sudo apt-get install koha-common</code>
+        <p class="koha-title">Server Configuration</p>
+        <p class="koha-title">
+          Open the following file and make a change to the port numbers
+        </p>
+        <code class="koha-code">sudo gedit /etc/koha/koha-sites.conf</code>
+        <code class="koha-code">INTRAPORT="8000"</code>
+        <code class="koha-code">OPACPORT="8001"</code>
+        <p class="koha-title">Install MySQL server</p>
+        <code class="koha-code">sudo apt install -y mysql-server </code>
+        <p class="koha-title">Koha instance creation</p>
+        <p class="koha-title">
+          Apply the following commands to set up Apache configuration files.
+        </p>
+        <code class="koha-code">sudo a2enmod rewrite</code>
+        <code class="koha-code">sudo a2enmod cgi</code>
+        <code class="koha-code">sudo service apache2 restart</code>
+        <p class="koha-title">Create a Koha instance named library</p>
+        <code class="koha-code">sudo koha-create --create-db library</code>
+        <p class="koha-title">
+          Open the following file and assign the port number for the Koha staff
+          client and OPAC
+        </p>
+        <code class="koha-code">sudo gedit /etc/apache2/ports.conf</code>
+        <p class="koha-title">Paste the following line below Listen 80</p>
+        <code class="koha-code">Listen 8000</code>
+        <code class="koha-code">Listen 8001</code>
+        <p class="koha-title">Restart the Apache server</p>
+        <code class="koha-code">sudo service apache2 restart</code>
+        <p class="koha-title">Enable modules and sites</p>
+        <code class="koha-code">sudo a2dissite 000-default</code>
+        <code class="koha-code">sudo a2enmod deflate</code>
+        <code class="koha-code">sudo a2ensite library</code>
+        <p class="koha-title">Restart Apache</p>
+        <code class="koha-code">sudo service apache2 restart</code>
+        <p class="koha-title">Get the default koha password</p>
+        <code class="koha-code">sudo koha-passwd library</code>
+        <p class="koha-title">
+          Open the following URL in the browser and complete the web installer
+          steps
+        </p>
+        <code class="koha-code"
+          >http://localhost:8000 or http://127.0.0.1:8000</code
+        >
       </header>
     </div>
 
